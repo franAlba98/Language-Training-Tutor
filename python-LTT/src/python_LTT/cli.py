@@ -1,22 +1,8 @@
-"""Console script for python_LTT."""
+import click
+from .utils import call_ollama
 
-import typer
-from rich.console import Console
-
-from python_LTT import utils
-
-app = typer.Typer()
-console = Console()
-
-
-@app.command()
-def main():
-    """Console script for python_LTT."""
-    console.print("Replace this message by putting your code into "
-               "python_LTT.cli.main")
-    console.print("See Typer documentation at https://typer.tiangolo.com/")
-    utils.do_something_useful()
-
-
-if __name__ == "__main__":
-    app()
+@click.command()
+@click.argument("message")
+def chat(message):
+    response = call_ollama(message)
+    click.echo(response)
